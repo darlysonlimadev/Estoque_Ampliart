@@ -1,29 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Nome:</strong>
-  <%= @produto.nome %>
-</p>
-
-<p>
-  <strong>Codigo:</strong>
-  <%= @produto.codigo %>
-</p>
-
-<p>
-  <strong>Categoria:</strong>
-  <%= @produto.categoria %>
-</p>
-
-<p>
-  <strong>Quantidade:</strong>
-  <%= @produto.quantidade %>
-</p>
-
-<p>
-  <strong>Preco:</strong>
-  <%= @produto.preco %>
-</p>
-
-<%= link_to 'Edit', edit_produto_path(@produto) %> |
-<%= link_to 'Back', produtos_path %>
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="card mb-3 w-75">
+    <div class="card-body">
+      <h5 class="card-title">Nome: <%= @produto.nome %></h5>
+      <p class="card-text">Codigo: <%= @produto.codigo %></p>
+      <p class="card-text">Categoria: <%= @produto.categoria.nome %></p>
+      <p class="card-text">Quantidade: <%= @produto.quantidade %></p>
+      <p class="card-text">Preco: <%= @produto.preco %></p>
+      <%= link_to 'Edit', edit_produto_path(@produto), class: "btn btn-primary" %>
+      <%= link_to 'Back', produtos_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,7 @@
         <div class="input-group">
           <%= text_field_tag :nome_search, params[:nome_search], class: "form-control search-input", placeholder: "Pesquisar por nome..." %>
           <%= text_field_tag :codigo_search, params[:codigo_search], class: "form-control search-input", placeholder: "Pesquisar por código..." %>
-          <%= text_field_tag :categoria_search, params[:categoria_search], class: "form-control search-input", placeholder: "Pesquisar por categoria..." %>
+          <%= select_tag :categoria_search, options_from_collection_for_select(Categoria.all, :id, :nome, params[:categoria_search]), include_blank: "Pesquisar por categoria...", class: "form-control search-input" %>
           <div class="input-group-append">
             <%= submit_tag "Pesquisar", class: "btn btn-primary" %>
             <%= link_to "Limpar", produtos_path, class: "btn btn-secondary" %>
@@ -34,12 +34,12 @@
             <tr>
               <td><%= produto.nome %></td>
               <td><%= produto.codigo %></td>
-              <td><%= produto.categoria %></td>
+              <td><%= produto.categoria.nome %></td>
               <td><%= produto.quantidade %></td>
               <td><%= produto.preco %></td>
-              <td><%= link_to 'Show', produto, class: 'btn btn-primary' %></td>
-              <td><%= link_to 'Edit', edit_produto_path(produto), class: 'btn btn-warning' %></td>
-              <td><%= link_to 'Destroy', produto, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+              <td><%= link_to 'Visualizar', produto, class: 'btn btn-primary' %></td>
+              <td><%= link_to 'Editar', edit_produto_path(produto), class: 'btn btn-warning' %></td>
+              <td><%= link_to 'Excluir', produto, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
             </tr>
           <% end %>
         </tbody>
@@ -47,7 +47,7 @@
 
       <br>
 
-      <%= link_to 'New Produto', new_produto_path, class: 'btn btn-success' %>
+      <%= link_to 'Novo Produto', new_produto_path, class: 'btn btn-success' %>
     </div>
   </div>
 </div>

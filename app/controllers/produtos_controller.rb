@@ -14,7 +14,8 @@ class ProdutosController < ApplicationController
     end
   
     if params[:categoria_search].present?
-      @produtos = @produtos.where("categoria ILIKE ?", "%#{params[:categoria_search]}%")
+      categoria_search = params[:categoria_search].to_s
+      @produtos = @produtos.where("categoria_id::text ILIKE ?", "%#{params[:categoria_search]}%")
     end
   end
 
@@ -25,7 +26,8 @@ class ProdutosController < ApplicationController
   # GET /produtos/new
   def new
     @produto = Produto.new
-    @produto.categoria_id = params[:produto][:categoria_id]
+    #@produto.categoria_id = params[:produto][:categoria_id]
+    #@produto.categoria_id = Categoria.first.id
   end
 
   # GET /produtos/1/edit
